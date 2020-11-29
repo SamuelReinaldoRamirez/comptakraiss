@@ -31,14 +31,8 @@ app.prepare().then(() => {
         const { shop, accessToken } = ctx.session;
         console.log("shop")
         console.log(shop);
-        console.log("access token")
         console.log(accessToken);
         console.log(ctx.cookies.get('shopOrigin'))
-        ctx.cookies.set('shopOrigin', shop, {
-          httpOnly: false,
-          secure: true,
-          sameSite: 'none'
-        });
         console.log(ctx.cookies.get('shopOrigin'))
         ctx.redirect('/');
       },
