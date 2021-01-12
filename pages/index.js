@@ -4,6 +4,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import store from 'store-js';
 import ResourceListWithProducts from '../components/ResourceList';
+import ResourceListWithOrders from '../components/getOrders';
+
+
 
 const img = 'https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg';
 
@@ -42,9 +45,10 @@ class Index extends React.Component {
             </EmptyState>
           </Layout>
           {emptyState ? (
-            <Layout></Layout>
-        ) : (
-            <ResourceListWithProducts />
+            <ResourceListWithOrders />
+            ) : (
+            //<ResourceListWithProducts />
+            <ResourceListWithOrders />
         )}
       </Page>
     );
