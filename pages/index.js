@@ -8,7 +8,7 @@ import ResourceListWithOrders from '../components/getOrders';
 
 
 
-const img = 'https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg';
+//const img = 'https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg';
 
 class Index extends React.Component {
   state = { open: false };
@@ -39,7 +39,7 @@ class Index extends React.Component {
                 content: 'Select products',
                 onAction: () => this.setState({ open: true }),
               }}
-              image={img}
+              //image={img}
             >
               <p>Select products and change their price temporarily</p>
             </EmptyState>
