@@ -86,7 +86,7 @@ query {
 }`;*/
 
 
-
+/*
 const GET_ORDERS_BY_ID = gql`
 query {
   orders(first: 50) {
@@ -108,6 +108,74 @@ query {
                
             }
           }
+        }
+      }
+    }
+  }
+}`;*/
+
+/*query {
+  orders(first: 50) {
+    edges {
+      cursor
+      node {
+        name
+        customer{
+          firstName
+          lastName
+          email
+        }
+        email
+        createdAt
+        shippingLine{
+          carrierIdentifier
+        }
+        fulfillments{
+          id
+          name
+          trackingInfo{
+            company
+            number
+          }
+          estimatedDeliveryAt
+          deliveredAt
+          displayStatus
+          status
+        }
+      }
+    }
+  }
+}*/
+
+
+const GET_ORDERS_BY_ID = gql`
+query {
+  orders(first: 50) {
+    edges {
+      cursor
+      node {
+        name
+        email
+        createdAt
+        fulfillments{
+          id
+          name
+          trackingInfo{
+            company
+            number
+          }
+          estimatedDeliveryAt
+          deliveredAt
+          displayStatus
+          status
+        }
+        shippingLine{
+          carrierIdentifier
+        }
+        customer{
+          firstName
+          lastName
+          email
         }
       }
     }
@@ -179,22 +247,66 @@ function DataTableExample(data) {
     console.log('key,value')
     console.log(key)
     console.log(value)
+    rows[key] = nodeToRows(value,[]) 
+  })
 
-    //rows[i] je voudrais mais i is undefined
-    rows[key] = nodeToRows(value,[]) })
+  rows.forEach(function(part, index){
+   /* element = ['<Dropdown>' +
+    '<Dropdown.Toggle variant="success" id="dropdown-basic">' +
+        'Dropdown Button'+
+      '</Dropdown.Toggle>'+
+    
+      '<Dropdown.Menu>'+
+        '<Dropdown.Item href="#/action-1">Action</Dropdown.Item>'+
+        '<Dropdown.Item href="#/action-2">Another action</Dropdown.Item>'+
+        '<Dropdown.Item href="#/action-3">Something else</Dropdown.Item>'+
+     '</Dropdown.Menu>'+
+    '</Dropdown>'].concat(element);*/
 
-   // console.log(Object.values(element)))));
+   rows[index] = [<select name="cars" id="cars">
+          <option value="volvo">Volvo</option>
+          <option value="saab">Saab</option>
+          <option value="mercedes">Mercedes</option>
+          <option value="audi">Audi</option>
+        </select>].concat(part);
+    //part = ['a'].concat(part);
+    console.log(part)
+  }, rows);
 
 
+  const clickableRowAction = () => {
+    alert("I am clicked !");
+  };
 
+  rows = [
+    [<div>
+      <select name="cars" id="cars">
+          <option value="volvo">Volvo</option>
+          <option value="saab">Saab</option>
+          <option value="mercedes">Mercedes</option>
+          <option value="audi">Audi</option>
+        </select>
+    </div>,
+      <div className="testClick" onClick={clickableRowAction}>
+        $875.00
+      </div>,
+      <div className="testClick" onClick={clickableRowAction}>
+        124689
+      </div>,
+      <div className="testClick" onClick={clickableRowAction}>
+        140
+      </div>,
+      <div className="testClick" onClick={clickableRowAction}>
+        $122,500.00
+      </div>
+    ]].concat(rows);
 
-  //const rows = items.map(itemsToNode)
   console.log('rows');
   console.log(rows);
 
 
   return (
-    <Page title="Sales by product">
+    <Page fullWidth="true">
       <Card>
         <DataTable
           columnContentTypes={[

@@ -14,7 +14,10 @@ class Index extends React.Component {
   state = { open: false };
   render() {
     const emptyState = !store.get('ids');
-    return (
+    return(
+      <ResourceListWithOrders />
+    );}
+    /*return (
       <Page>
         <TitleBar
           title="Sample App"
@@ -60,7 +63,7 @@ class Index extends React.Component {
     console.log(idsFromResources)
     console.log(resources.id)
     store.set('ids', idsFromResources);
-  };
+  };*/
 }
 
 export default Index;
