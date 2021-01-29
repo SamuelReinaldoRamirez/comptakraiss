@@ -7,10 +7,11 @@ import { Card,
     Stack,
     TextStyle,
     Thumbnail, } from '@shopify/polaris';
-import store from 'store-js';
-import React from 'react';
+import React, { PureComponent, Fragment } from 'react';
+import ReactDOM from 'react-dom';
 import { Redirect } from '@shopify/app-bridge/actions';
 import { Context } from '@shopify/app-bridge-react';
+import Select from './selectdrop';
 
 /*mutation exampleProductCreate($input: ProductInput!) {
   productCreate(input: $input) {
@@ -214,22 +215,22 @@ function DataTableExample(data) {
   }*/
 
   function nodeToRows(node, buildingRaw){
-    console.log("node")
+    /*console.log("node")
     console.log(node)
-    console.log('dans la lambda profonde')
+    console.log('dans la lambda profonde')*/
 
 
       Object.entries(node).forEach((element, index)=> {
         
-        console.log(element[0] !== '__typename')
+        /*console.log(element[0] !== '__typename')
         console.log(element[0] != '__typename')
-        console.log(element[0])
+        console.log(element[0])*/
 
         if(element[0] !== '__typename'){
-        console.log(buildingRaw)
+       /* console.log(buildingRaw)
         console.log([element[1]])
         console.log(buildingRaw.concat([element[1]]))
-        console.log('____________')
+        console.log('____________')*/
           buildingRaw =  (typeof element[1] === 'object' && element[1] !== null) ? nodeToRows(element[1], buildingRaw) : buildingRaw.concat([element[1]]);
         }
       });
@@ -240,13 +241,13 @@ function DataTableExample(data) {
   
   
 
-  console.log('items.map(itemsToNode)')
-  console.log(items.map(itemsToNode))
+ /* console.log('items.map(itemsToNode)')
+  console.log(items.map(itemsToNode))*/
   var rows = [];
   items.map(itemsToNode).forEach((value, key)=> {
-    console.log('key,value')
+   /* console.log('key,value')
     console.log(key)
-    console.log(value)
+    console.log(value)*/
     rows[key] = nodeToRows(value,[]) 
   })
 
@@ -263,18 +264,22 @@ function DataTableExample(data) {
      '</Dropdown.Menu>'+
     '</Dropdown>'].concat(element);*/
 
-   rows[index] = [<select name="cars" id="cars">
+  /* rows[index] = [<select name="cars" id="cars">
           <option value="volvo">Volvo</option>
           <option value="saab">Saab</option>
           <option value="mercedes">Mercedes</option>
           <option value="audi">Audi</option>
-        </select>].concat(part);
-    //part = ['a'].concat(part);
-    console.log(part)
+        </select>].concat(part);*/
+        rows[index] = [<Select id={index}></Select>].concat(part);
+    //console.log(part)
   }, rows);
 
 
-  const clickableRowAction = () => {
+
+//ReactDOM.render(<Select />, window.document.body);
+
+
+/*  const clickableRowAction = () => {
     alert("I am clicked !");
   };
 
@@ -299,7 +304,7 @@ function DataTableExample(data) {
       <div className="testClick" onClick={clickableRowAction}>
         $122,500.00
       </div>
-    ]].concat(rows);
+    ]].concat(rows);*/
 
   console.log('rows');
   console.log(rows);

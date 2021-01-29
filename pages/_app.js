@@ -17,6 +17,21 @@ const client = new ApolloClient({
 
 class MyApp extends App {
   render() {
+  /*  console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+
+    var mysql = require('mysql');
+
+    var con = mysql.createConnection({
+      host: "localhost",
+      user: "root",
+      password: "root"
+    });
+
+    con.connect(function(err) {
+      if (err) throw err;
+        console.log("Connected!");
+    });*/
+
     const { Component, pageProps, shopOrigin } = this.props;   
     const config = { apiKey: API_KEY, shopOrigin, forceRedirect: true };
      return (
@@ -38,6 +53,19 @@ class MyApp extends App {
   }
 }
 
+/*const express = require('express')
+const app = express()
+const port = 5000
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+})
+
+*/
 MyApp.getInitialProps = async ({ ctx }) => {
   return {
     shopOrigin: ctx.query.shop,
