@@ -17,20 +17,8 @@ const client = new ApolloClient({
 
 class MyApp extends App {
   render() {
-  /*  console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+  console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
 
-    var mysql = require('mysql');
-
-    var con = mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "root"
-    });
-
-    con.connect(function(err) {
-      if (err) throw err;
-        console.log("Connected!");
-    });*/
 
     const { Component, pageProps, shopOrigin } = this.props;   
     const config = { apiKey: API_KEY, shopOrigin, forceRedirect: true };
