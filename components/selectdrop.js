@@ -31,15 +31,15 @@ class Select extends React.Component{
         },
         {
           name: 'A',
-          value: 'a',
+          value: 444,
         },
         {
           name: 'B',
-          value: 'b',
+          value: 333,
         },
         {
           name: 'C',
-          value: 'c',
+          value: 222,
         },
       ],
       value: '?',
@@ -54,13 +54,21 @@ class Select extends React.Component{
       //console.log(event.target.value)
       store.set('etat'+this.props.id, { id : this.props.id, choix : event.target.value})
       console.log("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZz")
+      console.log(event.target.value)
+      console.log(event.target.value == "Select…")
+      console.log(event.target.value === "Select…")
+
+      var orderState = (event.target.value == "Select…") ? null : event.target.value;
+      console.log(orderState)
+
+
       //console.log(REACT_APP_ngrokBack)
 
-      
+      //l'id qu'on envoie en params est l'id du select dans la page concernée. il faudra le faire correspondre au vrai ID en fonction de la pagination et du tri de la datatable
       axios.put(
         "https://63167fceb920.ngrok.io/handle", 
-        { data: {"order_state" : "669"} }, 
-        {params: { id:668 }, headers: {"Content-Type": 'application/json'}}
+        {"order_state" : orderState}, 
+        {params: { id:this.props.id+1 }, headers: {"Content-Type": 'application/json'}}
     )
 
 

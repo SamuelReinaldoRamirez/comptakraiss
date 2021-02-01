@@ -332,6 +332,7 @@ function DataTableExample(data) {
             'jcp',
             'jcp',
           ]}
+          //il faut récupérer les order states de la db et peut etre les mettre en cache ca serait cool
           rows={rows}
           //'<img src="'+data+'">'
 
