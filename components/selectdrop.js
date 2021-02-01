@@ -55,8 +55,13 @@ class Select extends React.Component{
       store.set('etat'+this.props.id, { id : this.props.id, choix : event.target.value})
       console.log("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZz")
       //console.log(REACT_APP_ngrokBack)
+
       
-      axios.put("https://a175353e0c00.ngrok.io/handle", {})
+      axios.put(
+        "https://63167fceb920.ngrok.io/handle", 
+        { data: {"order_state" : "669"} }, 
+        {params: { id:668 }, headers: {"Content-Type": 'application/json'}}
+    )
 
 
       //axios.put("https://"+REACT_APP_ngrokBack+".ngrok.io/handle", {})
