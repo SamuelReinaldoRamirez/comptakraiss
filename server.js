@@ -1,22 +1,25 @@
 require('isomorphic-fetch');
-const dotenv = require('dotenv');
 const Koa = require('koa');
-const next = require('next');
 const { default: createShopifyAuth } = require('@shopify/koa-shopify-auth');
 const { verifyRequest } = require('@shopify/koa-shopify-auth');
 const session = require('koa-session');
 
-dotenv.config();
 const { default: graphQLProxy } = require('@shopify/koa-shopify-graphql-proxy');
 const { ApiVersion } = require('@shopify/koa-shopify-graphql-proxy');
 
-const port = parseInt(process.env.PORT, 10) || 3000;
+const dotenv = require('dotenv');
+const next = require('next');
+dotenv.config();
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
+const { SHOPIFY_API_SECRET_KEY, SHOPIFY_API_KEY } = process.env;
+
+
+const port = parseInt(process.env.PORT, 10) || 3000;
 const handle = app.getRequestHandler();
 
-const { SHOPIFY_API_SECRET_KEY, SHOPIFY_API_KEY } = process.env;
 app.prepare().then(() => {
+  console.log("ON EST DANS SEVEUR")
     const server = new Koa();
     server.use(session({ secure: true, sameSite: 'none' }, server));
     server.keys = [SHOPIFY_API_SECRET_KEY];

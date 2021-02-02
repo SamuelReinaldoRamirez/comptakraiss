@@ -17,11 +17,17 @@ const client = new ApolloClient({
 
 class MyApp extends App {
   render() {
-  console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+
 
 
     const { Component, pageProps, shopOrigin } = this.props;   
-    const config = { apiKey: API_KEY, shopOrigin, forceRedirect: true };
+    const config = {apiKey: API_KEY, shopOrigin, forceRedirect: true };
+    // const config = { ngrokBack: KEY_NGROCBACK, apiKey: API_KEY, shopOrigin, forceRedirect: true };
+
+    //console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+    //console.log("ngrockBack, apiKey")
+    //console.log(ngrokBack)
+    //console.log(apiKey)
      return (
       <React.Fragment>
         <Head>

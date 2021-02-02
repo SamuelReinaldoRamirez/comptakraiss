@@ -8,18 +8,20 @@ const next = require('next');
 dotenv.config();
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
-const { REACT_APP_ngrokBack } = process.env;
+const { REACT_APP_NGROKBACK } = process.env;
+const handle = app.getRequestHandler();
 
+console.log(process.env)
 app.prepare().then(() => {
   console.log("in app prepare")
-  console.log(REACT_APP_ngrokBack)
-});*///
+  console.log(REACT_APP_NGROKBACK)
+});*/
 
 
 //const {REACT_APP_ngrokBack} = process.env;
 //const ngrokBack = REACT_APP_ngrokBack;
-console.log('YATAAAAAAAAAAAAAAAAAAAAA')
-//console.log( REACT_APP_ngrokBack );
+console.log('cAcAAAAAAAAAAAAAAAAAAAAA')
+console.log(KEY_NGROKBACK)
 
 //class Select extends PureComponent {
 class Select extends React.Component{
@@ -53,10 +55,6 @@ class Select extends React.Component{
      // console.log(this.props.id)
       //console.log(event.target.value)
       store.set('etat'+this.props.id, { id : this.props.id, choix : event.target.value})
-      console.log("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZz")
-      console.log(event.target.value)
-      console.log(event.target.value == "Select…")
-      console.log(event.target.value === "Select…")
 
       var orderState = (event.target.value == "Select…") ? null : event.target.value;
       console.log(orderState)
@@ -66,7 +64,8 @@ class Select extends React.Component{
 
       //l'id qu'on envoie en params est l'id du select dans la page concernée. il faudra le faire correspondre au vrai ID en fonction de la pagination et du tri de la datatable
       axios.put(
-        "https://63167fceb920.ngrok.io/handle", 
+        //"https://547f417cc329.ngrok.io/handle", 
+        "https://"+KEY_NGROKBACK+".ngrok.io/handle", 
         {"order_state" : orderState}, 
         {params: { id:this.props.id+1 }, headers: {"Content-Type": 'application/json'}}
     )

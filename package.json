@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "proxy": "http://63167fceb920.ngrok.io",
+  "proxy": "http://547f417cc329.ngrok.io",
   "dependencies": {
     "@shopify/app-bridge-react": "^1.28.0",
     "@shopify/koa-shopify-auth": "^3.2.0",
