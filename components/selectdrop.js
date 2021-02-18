@@ -91,9 +91,14 @@ class Select extends React.Component{
     };
   
     render() {
-      const { options, value } = this.state;
+      console.log('value')
+      console.log(this.props.valueDeDB)
+
+      var { options, value } = this.state;
       var currentId;
       var etatFromStore;
+      //ici, il faut choisir si value est celui de la bdd (à l'initialisation), ou celui qu'on vien de choisir,( apres un put)
+      value = this.props.valueDeDB;
       var val;
 
       currentId = this.props.id,
