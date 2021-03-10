@@ -45,6 +45,7 @@ class Select extends React.Component{
         },
       ],
       value: '?',
+      valueDeDbState : '',
     };
 
 
@@ -52,8 +53,20 @@ class Select extends React.Component{
   
     handleChange = (event) => {
       this.setState({ value: event.target.value });
-     // console.log(this.props.id)
-      //console.log(event.target.value)
+      console.log("azertyuiop")
+      console.log(this)
+      console.log(this.value)
+      console.log(event.target.value)
+      console.log(this.props)
+
+
+//L4ERREUR EST ICI, il faut arreter d'utiliser ValueDeDb de props mais utiliser ValueDeDBState du State :)
+      Object.defineProperty(this, 'props', {
+        value: {id: this.props.id, valueDeDB: event.target.value},
+        writable: false
+      });
+
+      //this.props.valueDeDB = event.target.value
       store.set('etat'+this.props.id, { id : this.props.id, choix : event.target.value})
 
       var orderState = (event.target.value == "Select…") ? null : event.target.value;
@@ -69,6 +82,7 @@ class Select extends React.Component{
         {"order_state" : orderState}, 
         {params: { id:this.props.id+1 }, headers: {"Content-Type": 'application/json'}}
     )
+    
 
 
       //axios.put("https://"+REACT_APP_ngrokBack+".ngrok.io/handle", {})
@@ -91,14 +105,19 @@ class Select extends React.Component{
     };
   
     render() {
+      console.log('render')
+      console.log(this.state)
       console.log('value')
       console.log(this.props.valueDeDB)
+
+
+
 
       var { options, value } = this.state;
       var currentId;
       var etatFromStore;
       //ici, il faut choisir si value est celui de la bdd (à l'initialisation), ou celui qu'on vien de choisir,( apres un put)
-      value = this.props.valueDeDB;
+      value = this.props.valueDeDB == null ? 9949 : this.props.valueDeDB;
       var val;
 
       currentId = this.props.id,
@@ -110,7 +129,7 @@ class Select extends React.Component{
 
       etatFromStore == undefined ? 
       store.set('etat'+currentId,{ id : currentId, choix : val}) : 
-      val=etatFromStore.choix;
+      val=etatFromStore.choix == null ? 9949 : etatFromStore.choix;
       //console.log('etat' + currentId),
       //console.log(etatFromStore)
       //console.log(etatFromStore == undefined ? 'pas d\'id' : etatFromStore.id),

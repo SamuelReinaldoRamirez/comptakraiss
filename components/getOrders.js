@@ -118,7 +118,8 @@ function getCol(matrix, col) {
 function DataTableExample(data) {
 
   function callGetStateOrder() {
-    console.log("axios cal get state order")
+    console.log("dans getOrders axios call get state order")
+    console.log("https://" + KEY_NGROKBACK + ".ngrok.io/getStateOrder", { headers: { "Content-Type": 'application/json' } })
     return axios.get("https://" + KEY_NGROKBACK + ".ngrok.io/getStateOrder", { headers: { "Content-Type": 'application/json' } })
   }
 
@@ -179,7 +180,7 @@ function DataTableExample(data) {
        var orderState = (event.target.value == "Select…") ? null : event.target.value;
        console.log(orderState)*/
 
-      rows[index] = [<Select id={index} valueDeDB={ data[index].order_state}></Select>].concat(part);
+      rows[index] = [<Select id={index} valueDeDB={ data[index].order_state == null ? 9949 : data[index].order_state}></Select>].concat(part);
         //.setState({value : data[index].order_state})]
     }, rows);
   
