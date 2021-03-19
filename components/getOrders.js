@@ -180,6 +180,7 @@ function DataTableExample(data) {
        var orderState = (event.target.value == "Select…") ? null : event.target.value;
        console.log(orderState)*/
 
+       //il faut setter valuedeDbState issue du state plutot que de créer une nouvelle prop
       rows[index] = [<Select id={index} valueDeDB={ data[index].order_state == null ? 9949 : data[index].order_state}></Select>].concat(part);
         //.setState({value : data[index].order_state})]
     }, rows);
@@ -301,6 +302,7 @@ class ResourceListWithOrders extends React.Component {
     return (
       <Query query={GET_ORDERS_BY_ID}>
         {({ data, loading, error }) => {
+          console.log("DATA")
           if (loading) return <div>Loading…</div>;
           if (error) return <div>{error.message}</div>;
           console.log(data);

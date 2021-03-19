@@ -25,6 +25,10 @@ console.log(KEY_NGROKBACK)
 
 //class Select extends PureComponent {
 class Select extends React.Component{
+  constructor(props){
+    super(props);
+    this.state.valueDeDbState = props.valueDeDB
+  }
     state = {
       options: [
         {
@@ -55,16 +59,28 @@ class Select extends React.Component{
       this.setState({ value: event.target.value });
       console.log("azertyuiop")
       console.log(this)
-      console.log(this.value)
+      console.log(this.state.value)
       console.log(event.target.value)
       console.log(this.props)
 
 
 //L4ERREUR EST ICI, il faut arreter d'utiliser ValueDeDb de props mais utiliser ValueDeDBState du State :)
-      Object.defineProperty(this, 'props', {
-        value: {id: this.props.id, valueDeDB: event.target.value},
+     /* Object.defineProperty(this, 'state', {
+        valueDeDbState: event.target.value,
         writable: false
-      });
+      });*/
+
+      //exemple sur lequel s'appuyer pour setter le state
+    /*  this.setState(prevState => {
+        let jasper = Object.assign({}, prevState.jasper);  // creating copy of state variable jasper
+        jasper.name = 'someothername';                     // update the name property, assign a new value                 
+        return { jasper };                                 // return new object jasper object
+      })*/
+
+      console.log(this.state.valueDeDbState)
+      this.state.valueDeDbState = event.target.value;
+      this.state.value = event.target.value;
+      console.log(this.state.valueDeDbState)
 
       //this.props.valueDeDB = event.target.value
       store.set('etat'+this.props.id, { id : this.props.id, choix : event.target.value})
