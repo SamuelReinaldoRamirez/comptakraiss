@@ -27,6 +27,9 @@ console.log(KEY_NGROKBACK)
 class Select extends React.Component{
   constructor(props){
     super(props);
+    console.log("dans constructeur, pprops puis this")
+    console.log(props)
+    console.log(this)
     this.state.valueDeDbState = props.valueDeDB
   }
     state = {
@@ -125,6 +128,8 @@ class Select extends React.Component{
       console.log(this.state)
       console.log('value')
       console.log(this.props.valueDeDB)
+      console.log(this.state.valueDeDbState)
+
 
 
 
@@ -133,7 +138,14 @@ class Select extends React.Component{
       var currentId;
       var etatFromStore;
       //ici, il faut choisir si value est celui de la bdd (à l'initialisation), ou celui qu'on vien de choisir,( apres un put)
-      value = this.props.valueDeDB == null ? 9949 : this.props.valueDeDB;
+      //value = this.props.valueDeDB == null ? 9949 : this.props.valueDeDB;
+
+      console.log(this.state.valueDeDbState == null || this.state.valueDeDbState == 'Select…' )
+      console.log(this.state.valueDeDbState == null )
+      console.log(this.state.valueDeDbState == 'Select…' )
+      console.log(true || false)
+
+      value = (this.state.valueDeDbState == null || this.state.valueDeDbState == 'Select…' )? 9949 : this.state.valueDeDbState;
       var val;
 
       currentId = this.props.id,
