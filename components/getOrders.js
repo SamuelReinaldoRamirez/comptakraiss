@@ -253,6 +253,8 @@ function DataTableExample(data) {
   console.log(rowsFromDB)
 
 
+  console.log("ROWSS")
+  console.log(rows)
   return (
     <Page fullWidth="true">
       <Card>
