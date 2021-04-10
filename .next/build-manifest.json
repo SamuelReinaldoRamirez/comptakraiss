@@ -29,11 +29,6 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
-    "/ensavoirplus": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/ensavoirplus.js"
-    ],
     "/finances": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",

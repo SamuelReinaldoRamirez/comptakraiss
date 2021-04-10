@@ -23,7 +23,11 @@ query {
       cursor
       node {
         name
-        email
+        customer{
+          firstName
+          lastName
+          email
+        }
         createdAt
         fulfillments{
           id
@@ -39,11 +43,6 @@ query {
         }
         shippingLine{
           carrierIdentifier
-        }
-        customer{
-          firstName
-          lastName
-          email
         }
       }
     }
@@ -181,7 +180,15 @@ function DataTableExample(data) {
        console.log(orderState)*/
 
        //il faut setter valuedeDbState issue du state plutot que de créer une nouvelle prop
-      rows[index] = [<Select id={index} valueDeDB={ data[index].order_state == null ? 9949 : data[index].order_state}></Select>].concat(part);
+      var nomPrenomCustomer = part[1] == null ? null : part[1] + " " + part[2]
+      nomPrenomCustomer == null ? null : (part.splice(2,1), part[2] = part[3], part.splice(3,1))
+      part[1] = nomPrenomCustomer;
+      part.splice(3, 0, <Select id={index} valueDeDB={ data[index].order_state == null ? 9949 : data[index].order_state}></Select>);
+      console.log("PART") 
+      console.log(part)
+      rows[index] = part;
+
+      //rows[index] = [<Select id={index} valueDeDB={ data[index].order_state == null ? 9949 : data[index].order_state}></Select>].concat(part);
         //.setState({value : data[index].order_state})]
     }, rows);
   
@@ -273,12 +280,12 @@ function DataTableExample(data) {
           ]}
           headings={[
             'id',
-            'name',
-            'email',
-            'jcp',
-            'jcp',
-            'jcp',
-            'jcp',
+            'nom et prénom',
+            'date de la commande',
+            'état de la commande',
+            'transporteur',
+            'numéro de suivi',
+            'date prévue de livraison',
           ]}
           //il faut récupérer les order states de la db et peut etre les mettre en cache ca serait cool
           rows={rows}
